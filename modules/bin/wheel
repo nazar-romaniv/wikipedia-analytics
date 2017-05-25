@@ -1,4 +1,4 @@
-#!/home/nazar/wikipedia-analytics/modules/bin/python3
+#!/home/nazar/wikipedia-analytics/modules/bin/python2.7
 
 # -*- coding: utf-8 -*-
 import re
