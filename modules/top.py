@@ -15,19 +15,21 @@ class Top:
             self._elements[i] = value
 
     def add(self, new):
-        if new < min:
+        val = getattr(new, self._param)()
+        if val < self.min:
             return None
         else:
-            self._insert(new)
-
-    def _insert(self, new):
-        for index in xrange(0, 10):
-            if self[index] < new:
-                self._shift(index)
-                self[index] = new
-                break
-        if index == 9:
-            self.min = new
+            for index in xrange(0, 10):
+                try:
+                    if getattr(self[index], self._param)() < val:
+                        self._shift(index)
+                        self[index] = new
+                        break
+                except AttributeError:
+                    self[index] = new
+                    self.min = val
+            if index == 9:
+                self.min = val
 
     def __getitem__(self, index):
         if index < 0 or index >= 10:

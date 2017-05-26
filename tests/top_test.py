@@ -15,7 +15,7 @@ def is_reversed(ls):
 class TopTest(unittest.TestCase):
 
     def setUp(self):
-        self.top = top.Top("__abs__()")
+        self.top = top.Top("__abs__")
 
     def test_clear(self):
         self.top._clear(10)
@@ -33,11 +33,11 @@ class TopTest(unittest.TestCase):
         with self.assertRaises(IndexError):
             print self.top[10]
 
-    def test_insert(self):
+    def test_add(self):
         for i in xrange(9, -1, -1):
             self.top._elements[9 - i] = i
         expected = [15] + [i for i in xrange(9, 0, -1)]
-        self.top._insert(15)
+        self.top.add(15)
         actual = [i for i in self.top]
         self.assertEqual(expected, actual)
 
