@@ -15,13 +15,13 @@ class Top:
             self._elements[i] = value
 
     def add(self, new):
-        val = getattr(new, self._param)
+        val = new[self._param]
         if val < self.min:
             return None
         else:
             for index in xrange(0, 10):
                 try:
-                    if getattr(self[index], self._param) < val:
+                    if self[index][self._param] < val:
                         self._shift(index)
                         self[index] = new
                         break
