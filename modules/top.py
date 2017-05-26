@@ -5,33 +5,25 @@ class Top:
 
     def __init__(self, param):
         CTop = py_object * 10
-        self.__param = param
-        self.__elements = CTop()
+        self._param = param
+        self._elements = CTop()
         self.min = 0
-        self.count = 0
-        self.__clear(None)
+        self._clear(None)
 
-    def __clear(self, value):
+    def _clear(self, value):
         for i in xrange(10):
-            self.__elements[i] = value
-
-    def view(self):
-        for item, index in enumerate(self):
-            print item, index
+            self._elements[i] = value
 
     def add(self, new):
-        if self.count == 10:
-            if new < min:
-                return None
-            else:
-                self.__insert(new)
+        if new < min:
+            return None
         else:
-            self.__insert(new)
+            self._insert(new)
 
-    def __insert(self, new):
+    def _insert(self, new):
         for index in xrange(0, 10):
             if self[index] < new:
-                self.__shift(index)
+                self._shift(index)
                 self[index] = new
                 break
         if index == 9:
@@ -41,19 +33,19 @@ class Top:
         if index < 0 or index >= 10:
             raise IndexError("Top only contains top 10 items")
         else:
-            return self.__elements[index]
+            return self._elements[index]
 
     def __setitem__(self, index, value):
         if index < 0 or index >= 10:
             raise IndexError("Top only contains top 10 items")
         else:
-            self.__elements[index] = value
+            self._elements[index] = value
 
-    def __shift(self, index):
+    def _shift(self, index):
         if index < 0 or index >= 10:
             raise IndexError("Top only contains top 10 items")
         else:
-            for i in xrange(8, index, -1):
+            for i in xrange(8, index - 1, -1):
                 self[i + 1] = self[i]
 
     def __iter__(self):
@@ -76,4 +68,3 @@ class _TopIterator:
             obj = self.top[self.current]
             self.current += 1
             return obj
-
