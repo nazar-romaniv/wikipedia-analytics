@@ -25,7 +25,7 @@ class Top:
                         self._shift(index)
                         self[index] = new
                         break
-                except AttributeError:
+                except TypeError:
                     self[index] = new
                     self.min = val
             if index == 9:
