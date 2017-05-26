@@ -14,7 +14,7 @@ def is_reversed(ls):
 
 class TopTest(unittest.TestCase):
     """
-    Unit test for Top. NOTE: Works with parentheses after call to gettattr only!!!
+    Unit test for Top. NOTE: Works with parentheses after call to getattr only!!!
     """
     def setUp(self):
         self.top = top.Top("__abs__")
