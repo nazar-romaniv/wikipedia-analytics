@@ -7,7 +7,7 @@ class PageParser:
         self.pages = dict()
 
     def add_pages(self):
-        for elem, event in iterparse('pages.xml', events=('start', 'end')):
+        for event, elem in iterparse('pages.xml', events=('start', 'end')):
             if event == 'start':
                 if elem.tag == 'pageviews':
                     views = 0
@@ -17,7 +17,7 @@ class PageParser:
                 elif elem.tag == 'pvip':
                     views += int(elem.text)
                 elif elem.tag == 'page':
-                    page = {'id': int(elem.attrib['pageid']),
-                            'size': int(elem.attrib['length']),
+                    page_id = int(elem.attrib['pageid'])
+                    page = {'size': int(elem.attrib['length']),
                             'views': views}
-                    self.pages[page['id']] = page
+                    self.pages[page_id] = page
