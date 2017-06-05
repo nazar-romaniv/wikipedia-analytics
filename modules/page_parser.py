@@ -13,10 +13,12 @@ class PageParser:
                     views = 0
             elif event == 'end':
                 if elem.tag == 'continue':
-                    self._continue = elem.attrib['gapcontinue']
+                    self._continue = elem.attrib['pvipcontinue'].replace('_', ' ')
                 elif elem.tag == 'pvip':
                     views += int(elem.text)
                 elif elem.tag == 'page':
+                    if elem.attrib['title'] == self._continue:
+                        return self._continue
                     page_id = int(elem.attrib['pageid'])
                     page = {'size': int(elem.attrib['length']),
                             'views': views}
