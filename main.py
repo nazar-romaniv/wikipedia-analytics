@@ -11,7 +11,7 @@ def save_results(*tops):
 
 def main():
     try:
-        view_top = top.Top('views')
+        views_top = top.Top('views')
         size_top = top.Top('size')
         parser = page_parser.PageParser()
         requests = request_handler.RequestHandler()
@@ -28,10 +28,12 @@ def main():
                 break
             print next_page
             requests.params['gapfrom'] = next_page
-    except Exception:
-        raise
+
+        save_results(views_top, size_top)
     finally:
+        views_top.display()
+        size_top.display()
         os.remove('modules/pages.xml')
 
-
-main()
+if __name__ == '__main__':
+    main()
