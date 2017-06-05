@@ -20,7 +20,7 @@ def main():
             requests.new_read()
             next_page = parser.add_pages()
             for page_id in parser.pages:
-                view_top.add(parser.pages[page_id], page_id)
+                views_top.add(parser.pages[page_id], page_id)
                 size_top.add(parser.pages[page_id], page_id)
             parser.pages.clear()
             if next_page is False:
