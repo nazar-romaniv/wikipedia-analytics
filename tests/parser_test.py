@@ -28,7 +28,7 @@ class TestParser(unittest.TestCase):
 
 sample_xml = """<?xml version="1.0"?>
 <api batchcomplete="">
-<continue gapcontinue="!!!" continue="gapcontinue||" />
+<continue pvipcontinue="!!!" continue="gapcontinue||" />
 <query>
 <pages>
 <page pageid="5878274" pagelanguagedir="ltr" touched="2017-05-11T07:54:10Z" lastrevid="732538600" length="84">
