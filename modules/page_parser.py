@@ -16,6 +16,7 @@ class PageParser:
             elif event == 'end':
                 if elem.tag == 'continue':
                     end = False
+                    print(elem.attrib)
                     self._continue = elem.attrib['pvipcontinue']
                 elif elem.tag == 'pvip':
                     views += int(elem.text)

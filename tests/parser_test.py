@@ -7,7 +7,7 @@ import page_parser
 class TestParser(unittest.TestCase):
 
     def setUp(self):
-        with open('../modules/pages.xml', 'w') as xml:
+        with open('pages.xml', 'w') as xml:
             xml.write(sample_xml)
         self.parser = page_parser.PageParser()
         self.parser.add_pages()
