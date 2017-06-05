@@ -7,13 +7,15 @@ import page_parser
 class TestParser(unittest.TestCase):
 
     def setUp(self):
-        with open('pages.xml', 'w') as xml:
+        os.mkdir('modules')
+        with open('modules/pages.xml', 'w') as xml:
             xml.write(sample_xml)
         self.parser = page_parser.PageParser()
         self.parser.add_pages()
 
     def tearDown(self):
-        os.remove('pages.xml')
+        os.remove('modules/pages.xml')
+        os.rmdir('modules')
         del self.parser
 
     def test_add_continue(self):
