@@ -20,14 +20,10 @@ class Top:
             return None
         else:
             for index in xrange(0, 10):
-                try:
-                    if self[index][1] < val:
-                        self._shift(index)
-                        self[index] = (page_id, val)
-                        break
-                except TypeError:
+                if self[index][1] < val:
+                    self._shift(index)
                     self[index] = (page_id, val)
-                    self.min = val
+                    break
             if index == 9:
                 self.min = val
 

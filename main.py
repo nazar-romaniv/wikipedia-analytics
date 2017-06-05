@@ -5,9 +5,10 @@ import os
 
 
 def save_results(*tops):
-    for top in tops:
-        with open('results_%s.txt' % top.param, 'w') as f:
-            f.write(top.display())
+    for item in tops:
+        with open('results_%s.txt' % item.param, 'w') as f:
+            f.write(item.display())
+
 
 def main():
     try:

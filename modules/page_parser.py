@@ -32,8 +32,16 @@ class PageParser:
                         if elem.attrib['title'] == self._continue.replace('_', ' '):
                             return self._continue
                         page_id = int(elem.attrib['pageid'])
-                        page = {'size': int(elem.attrib['length']),
-                                'views': views}
+                        try:
+                            page = {
+                                'size': int(elem.attrib['length']),
+                                'views': views
+                                }
+                        except UnboundLocalError:
+                            page = {
+                                'size': int(elem.attrib['length']),
+                                'views': 0
+                                }
                         self.pages[page_id] = page
             except ParseError as e:
                 print e.message
