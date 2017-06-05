@@ -5,31 +5,36 @@ class Top:
 
     def __init__(self, param):
         CTop = py_object * 10
-        self._param = param
+        self.param = param
         self._elements = CTop()
         self.min = 0
-        self._clear(None)
+        self._clear((0, 0))
 
     def _clear(self, value):
         for i in xrange(10):
             self._elements[i] = value
 
-    def add(self, new):
-        val = new[self._param]
+    def add(self, new, page_id):
+        val = new[self.param]
         if val < self.min:
             return None
         else:
             for index in xrange(0, 10):
                 try:
-                    if self[index][self._param] < val:
+                    if self[index][1] < val:
                         self._shift(index)
-                        self[index] = new
+                        self[index] = (page_id, val)
                         break
                 except TypeError:
-                    self[index] = new
+                    self[index] = (page_id, val)
                     self.min = val
             if index == 9:
                 self.min = val
+
+    def display(self):
+        print 'Top 10 pages by %s:' % self.param
+        for page in self:
+            print 'ID: %d, %s: %d' % (page[0], self.param, page[1])
 
     def __getitem__(self, index):
         if index < 0 or index >= 10:

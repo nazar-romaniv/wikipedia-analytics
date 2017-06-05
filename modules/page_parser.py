@@ -1,4 +1,4 @@
-from xml.etree.cElementTree import iterparse
+from xml.etree.cElementTree import iterparse, ParseError
 
 
 class PageParser:
@@ -9,26 +9,37 @@ class PageParser:
 
     def add_pages(self):
         end = True
-        for event, elem in iterparse('pages.xml', events=('start', 'end')):
-            if event == 'start':
-                if elem.tag == 'pageviews':
-                    views = 0
-            elif event == 'end':
-                if elem.tag == 'continue':
-                    end = False
-                    print(elem.attrib)
-                    self._continue = elem.attrib['pvipcontinue']
-                elif elem.tag == 'pvip':
-                    views += int(elem.text)
-                elif elem.tag == 'page':
-                    if elem.attrib['title'] == self._continue.replace('_', ' '):
-                        return self._continue
-                    page_id = int(elem.attrib['pageid'])
-                    page = {'size': int(elem.attrib['length']),
-                            'views': views}
-                    self.pages[page_id] = page
+        gap = False
+        for event, elem in iterparse('modules/pages.xml', events=('start', 'end')):
+            try:
+                if event == 'start':
+                    if elem.tag == 'pageviews':
+                        views = 0
+                elif event == 'end':
+                    if elem.tag == 'continue':
+                        end = False
+                        try:
+                            self._continue = elem.attrib['pvipcontinue']
+                        except KeyError:
+                            self._continue = elem.attrib['gapcontinue']
+                            gap = True
+                    elif elem.tag == 'pvip':
+                        try:
+                            views += int(elem.text)
+                        except TypeError:
+                            pass
+                    elif elem.tag == 'page':
+                        if elem.attrib['title'] == self._continue.replace('_', ' '):
+                            return self._continue
+                        page_id = int(elem.attrib['pageid'])
+                        page = {'size': int(elem.attrib['length']),
+                                'views': views}
+                        self.pages[page_id] = page
+            except ParseError as e:
+                print e.message
+
         if end:
             print('End')
             return False
-        else:
-            print('Not end')
+        elif gap:
+            return self._continue

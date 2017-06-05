@@ -13,7 +13,7 @@ class TestParser(unittest.TestCase):
         self.parser.add_pages()
 
     def tearDown(self):
-        os.remove('../modules/pages.xml')
+        os.remove('pages.xml')
         del self.parser
 
     def test_add_continue(self):
@@ -28,17 +28,17 @@ class TestParser(unittest.TestCase):
 
 sample_xml = """<?xml version="1.0"?>
 <api batchcomplete="">
-<continue pvipcontinue="!!!" continue="gapcontinue||" />
+<continue gapcontinue="!!!" continue="gapcontinue||" />
 <query>
 <pages>
-<page pageid="5878274" pagelanguagedir="ltr" touched="2017-05-11T07:54:10Z" lastrevid="732538600" length="84">
+<page pageid="5878274" title="aaa" pagelanguagedir="ltr" touched="2017-05-11T07:54:10Z" lastrevid="732538600" length="84">
 <pageviews>
 <pvip date="2017-03-26" xml:space="preserve">82</pvip>
 <pvip date="2017-03-27" xml:space="preserve">55</pvip>
 <pvip date="2017-03-28" xml:space="preserve">29</pvip>
 </pageviews>
 </page>
-<page pageid="3632887" pagelanguage="en" touched="2017-05-19T01:50:45Z" lastrevid="780817488" length="1242">
+<page pageid="3632887" title="bbb" pagelanguage="en" touched="2017-05-19T01:50:45Z" lastrevid="780817488" length="1242">
 <pageviews><pvip date="2017-03-26" xml:space="preserve">123</pvip>
 </pageviews></page></pages></query>
 </api>
