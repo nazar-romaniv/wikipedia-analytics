@@ -9,7 +9,7 @@ class RequestHandler:
             'action': 'query', 'generator': 'allpages',
             'prop': 'pageviews|info',
             'format': 'xml',
-            'gaplimit': '80', 'gapfrom': '',
+            'gaplimit': '40', 'gapfrom': '',
         }
 
     def new_read(self):

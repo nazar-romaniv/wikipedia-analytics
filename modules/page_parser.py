@@ -37,7 +37,7 @@ class PageParser:
                             return self._continue
                         page_id = int(elem.attrib['pageid'])
                         try:
-                            size_top.add(int(elem.attrib['length'], page_id)
+                            size_top.add(int(elem.attrib['length']), page_id)
                             views_top.add(views, page_id)
                         except KeyError:
                             views_top.add(views, page_id)
@@ -51,6 +51,7 @@ class PageParser:
             print('End')
             return False
         elif gap:
+            print 'Gap!!!!!!!!!!!!!!!!!!!!!'
             return self._continue
 
 
