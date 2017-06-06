@@ -1,10 +1,14 @@
 from xml.etree.cElementTree import iterparse, ParseError
+import top
+
+views_top = top.Top("views")
+size_top = top.Top("size")
+
 
 
 class PageParser:
 
     def __init__(self):
-        self.pages = dict()
         self._continue = ''
 
     def add_pages(self):
@@ -33,16 +37,13 @@ class PageParser:
                             return self._continue
                         page_id = int(elem.attrib['pageid'])
                         try:
-                            page = {
-                                'size': int(elem.attrib['length']),
-                                'views': views
-                                }
+                            size_top.add(int(elem.attrib['length'], page_id)
+                            views_top.add(views, page_id)
+                        except KeyError:
+                            views_top.add(views, page_id)
                         except UnboundLocalError:
-                            page = {
-                                'size': int(elem.attrib['length']),
-                                'views': 0
-                                }
-                        self.pages[page_id] = page
+                            pass
+               
             except ParseError as e:
                 print e.message
 
@@ -51,3 +52,7 @@ class PageParser:
             return False
         elif gap:
             return self._continue
+
+
+parser = PageParser()
+

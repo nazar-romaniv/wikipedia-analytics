@@ -14,8 +14,7 @@ class Top:
         for i in xrange(10):
             self._elements[i] = value
 
-    def add(self, new, page_id):
-        val = new[self.param]
+    def add(self, val, page_id):
         if val < self.min:
             return None
         else:

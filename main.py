@@ -1,6 +1,5 @@
-from modules import request_handler
-from modules import page_parser
-from modules import top
+from modules.request_handler import request_handler
+from modules.page_parser import parser, views_top, size_top
 import os
 
 
@@ -12,18 +11,9 @@ def save_results(*tops):
 
 def main():
     try:
-        views_top = top.Top('views')
-        size_top = top.Top('size')
-        parser = page_parser.PageParser()
-        requests = request_handler.RequestHandler()
-
         while True:
-            requests.new_read()
+            request_handler.new_read()
             next_page = parser.add_pages()
-            for page_id in parser.pages:
-                views_top.add(parser.pages[page_id], page_id)
-                size_top.add(parser.pages[page_id], page_id)
-            parser.pages.clear()
             if next_page is False:
                 print 'Done'
                 break
@@ -38,3 +28,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

@@ -16,3 +16,7 @@ class RequestHandler:
         resp = requests.get(self.api, params=self.params)
         with open('modules/pages.xml', 'w') as f:
             f.write(resp.text.encode('utf-8'))
+
+
+request_handler = RequestHandler()
+
