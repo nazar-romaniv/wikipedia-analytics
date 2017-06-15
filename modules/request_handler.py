@@ -19,4 +19,3 @@ class RequestHandler:
 
 
 request_handler = RequestHandler()
-

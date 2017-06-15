@@ -5,7 +5,6 @@ views_top = top.Top("views")
 size_top = top.Top("size")
 
 
-
 class PageParser:
 
     def __init__(self):
@@ -56,4 +55,3 @@ class PageParser:
 
 
 parser = PageParser()
-
