@@ -1,7 +1,7 @@
-from ctypes import py_object
+from array_adt import Array
 
 
-class Top:
+class Top(Array):
 
     def __init__(self, param):
         CTop = py_object * 10
