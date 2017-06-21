@@ -1,7 +1,7 @@
-from array_adt import Array
+from array_adt import ArrayADT
 
 
-class Top(Array):
+class Top(ArrayADT):
 
     def __init__(self, param):
         CTop = py_object * 10
@@ -40,13 +40,13 @@ class Top(Array):
 
     def __getitem__(self, index):
         if index < 0 or index >= 10:
-            raise IndexError("Top only contains top 10 items")
+            raise IndexError("Array has %d elements" % len(self))
         else:
             return self._elements[index]
 
     def __setitem__(self, index, value):
         if index < 0 or index >= 10:
-            raise IndexError("Top only contains top 10 items")
+            raise IndexError("Array has %d elements" % len(self))
         else:
             self._elements[index] = value
 
@@ -58,14 +58,14 @@ class Top(Array):
                 self[i + 1] = self[i]
 
     def __iter__(self):
-        return _TopIterator(self)
+        return _ArrayIterator(self)
 
 
-class _TopIterator:
+class _ArrayIterator:
 
-    def __init__(self, top):
+    def __init__(self, arr):
         self.current = 0
-        self.top = top
+        self.arr = arr
 
     def __iter__(self):
         return self
@@ -74,6 +74,6 @@ class _TopIterator:
         if self.current == 10:
             raise StopIteration
         else:
-            obj = self.top[self.current]
+            obj = self.arr[self.current]
             self.current += 1
             return obj
